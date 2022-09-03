@@ -3,21 +3,15 @@
 
 string option;
 List<string> contact = new List<string>();
-string firstName;
-String lastName;   
-string phoneNumber;
-string contactInfo;
+List<string> contactInfo = new List<string>();
 int contactNumber;
 do
 {
-
-
-
     Console.WriteLine("-------- MENY --------");
     Console.WriteLine("#1 Skapa en kontakt");
     Console.WriteLine("#2 Ta bort en kontakt");
     Console.WriteLine("#3 Lista alla kontakter");
-///    Console.WriteLine("#4 Visa en kontakt");
+    Console.WriteLine("#4 Visa en kontakt");
     Console.WriteLine("#Q Avsluta applicationen");
     Console.Write("Välj ett av alternativen: ");
     option = Console.ReadLine();
@@ -27,13 +21,15 @@ do
         case "1":
             Console.Clear();
             Console.Write("Ange förnamn: ");
-            firstName = Console.ReadLine();
+            string firstName = Console.ReadLine();
             Console.Write("Ange efternnamn: ");
-            lastName = Console.ReadLine();
+            string lastName = Console.ReadLine();
             Console.Write("Ange telefonnummer: ");
-            phoneNumber = Console.ReadLine();
-            contactInfo = (firstName)+" "+(lastName)+" "+(phoneNumber);
-            contact.Add(contactInfo);
+            string phoneNumber = Console.ReadLine();
+            string fullName = (firstName) + " " + (lastName);
+            contact.Add(fullName);
+            contactInfo.Add(phoneNumber);
+            contact.
             break;
         case "2":
             Console.Clear();
@@ -49,6 +45,7 @@ do
             string userNumber = Console.ReadLine();
             removeUser = Convert.ToInt32(userNumber);
             contact.RemoveAt(removeUser-1);
+            contactInfo.RemoveAt(removeUser - 1);
             break;
         case "3":
             Console.Clear();
@@ -58,6 +55,16 @@ do
                 Console.WriteLine($"#{contactNumber} {item}");
                 contactNumber++;
             }
+            break;
+        case "4":
+            Console.Clear();
+            Console.Write("Vilken användare vill du visa: ");
+            string searchName = Console.ReadLine();
+            int indexOf = Convert.ToInt32(contact.Contains(searchName));
+            Console.WriteLine("namn: "+contact[indexOf]);
+            Console.WriteLine("-------------------------------------");
+            Console.WriteLine("Telefonnummer: " + contactInfo[indexOf]);
+            
             break;
         default:
             Console.Clear();
